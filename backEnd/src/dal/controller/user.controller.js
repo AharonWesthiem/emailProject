@@ -11,8 +11,9 @@ async function create(data) {
 
 const go = async () => {
     
-   const newUser = await create(user)
-   return newUser
+ 
 }
 
-go()
+// go()
+
+module.exports = {create}

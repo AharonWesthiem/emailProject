@@ -21,15 +21,18 @@ const emailSchema = new mongoos.Schema({
         type: String,
     },
 
-    status:{
-        type: Boolean,
-        default : false
+    createDate: {
+        type : Date,
+        default: Date.now
     },
-    
-    isActive : {
-        type: Boolean,
-        default : false
-    }
+
+
+    status:[{
+        type: String,
+        enum: ["read", "unread", "trash"],
+        default: "unread"
+    }],
+   
 
 
 })
