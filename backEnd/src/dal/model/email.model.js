@@ -27,15 +27,19 @@ const emailSchema = new mongoos.Schema({
     },
 
 
-    status:[{
-        type: String,
-        enum: ["read", "unread", "trash"],
-        default: "unread"
-    }],
+    status: {
+        type: [{
+          type: String,
+          enum: ["read", "unread", "trash"],
+          default: "unread",
+        }],
+        default: ["unread"], // Set default value for the entire array
+      },
+    })
    
 
 
-})
+
 
 const emailModel = mongoos.model('email', emailSchema)
 

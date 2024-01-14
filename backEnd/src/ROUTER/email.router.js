@@ -23,16 +23,17 @@ router.get('/:type/:email', async(req,res)=>{
      
     const type = req.params.type
     const email = req.params.email
-    let data = await emailServies.getMesage(type,email)
-    console.log(data);
+
+    let data = await emailServies.getMessage(type,email)
     res.send(data)
 })
 
 
 
-router.put('/:id', async (req,res) => {
+router.put('/:messageId', async (req,res) => {
     try {
-        const updateMessage = emailServies.updateMesage(req.params.id, req.body)
+        const updateMessage = emailServies.MessageToUpdata(req.params.messageId, req.query.status)
+        console.log(req.query.status);
         res.send(updateMessage)
     } catch (error) {
         res.status(400).send(error)
