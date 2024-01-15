@@ -3,25 +3,29 @@ import axios from 'axios'
 import Message from '../message'
 
 import  { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 // import CartContext from './context/CartContext'
 
 
 export default function allMalis() { 
-    const email= 'shmuel@gmail.com'
-    const type = 'to'
     
     const[emails, setEmails]= useState([])
+    const {type} = useParams()
+    console.log(type)
+    const email= 'shmuel@gmail.com'
+    
+    
 
 
         useEffect(() => {
-            axios.get(`http://localhost:2500/email/${type}/`+ email)
+            axios.get(`http://localhost:2500/email/${type}/${email}`)
             .then((res) => {
                 setEmails(res.data)
                 console.log(res.data);
 
             })
            
-        }, [])
+        },[type])
     
     return (
         
@@ -34,8 +38,8 @@ export default function allMalis() {
                
                 
                 {emails.map(mas=>
-                <tr className=''>
-                     <Message mes={mas}/>
+                <tr >
+                     <Message key={mas} mes={mas}/>
                      </tr>)}
                 
                 
