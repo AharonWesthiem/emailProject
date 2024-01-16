@@ -1,7 +1,7 @@
-const mongoos = require("mongoose")
+const mongoose = require("mongoose")
 
 
-const emailSchema = new mongoos.Schema({
+const emailSchema = new mongoose.Schema({
 
     from: {
         type: String,
@@ -11,6 +11,7 @@ const emailSchema = new mongoos.Schema({
     to: [{
         type: String,
         required: true,
+
     }],
 
     title : {
@@ -24,23 +25,48 @@ const emailSchema = new mongoos.Schema({
     createDate: {
         type : Date,
         default: Date.now
-    },
+    }})
 
 
-    status: {
-        type: [{
-          type: String,
-          enum: ["read", "unread", "trash"],
-          default: "unread",
-        }],
-        default: ["unread"], // Set default value for the entire array
-      },
-    })
-   
+    // status: {
+    //     type: [{
+    //       type: String,
+    //       enum: ["read", "unread", "trash"],
+    //       default: "unread",
+    //     }],
+    //     default: ["unread"], // Set default value for the entire array
+    //   },
+    // },
+
+
+    // tag: {
+    //     read: [{
+    //       email: {
+    //         type: String,
+    //         required: true,
+    //       },
+    //       status: {
+    //         type: String,
+    //         enum: ["unread", "read", "trash"],
+    //         default: "unread",
+    //       },
+    //     }],
+    //     trash: [{
+    //       email: {
+    //         type: String,
+    //         required: true,
+    //       },
+    //       status: {
+    //         type: Boolean,
+    //         default: false,
+    //       },
+    //     }],
+    //   },
+    // });
 
 
 
 
-const emailModel = mongoos.model('email', emailSchema)
+const emailModel = mongoose.model('email', emailSchema)
 
 module.exports = emailModel;

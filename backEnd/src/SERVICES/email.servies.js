@@ -7,7 +7,7 @@ async function getAllMessages() {
 async function addNewMassage(data) {
   let massageObj = {
     from: data.from,
-    to: data.to,
+    to:data.to,
     title: data.title,
     message: data.message,
     createDate: new Date(),
@@ -21,6 +21,8 @@ async function getMessage(type, email) {
     return emailController.read({ [type]: email });
   }
    
+
+   
   if (type === "trash") {
     return emailController.readTrash( email);
   }
@@ -30,9 +32,18 @@ async function getMessage(type, email) {
    
 
 async function MessageToUpdata(id, status) {
-  // let message = await emailController.readOne({_id: id})
-  let messageToUodate = await emailController.update({_id:id}, status);
-  return messageToUodate;
+  try {
+   const exisingMessage = await emailController.readOne({_id: id})
+  //  console.log({_id: id});
+  if(!exisingMessage){
+    throw new Error("Message not found")
+  } 
+  let updateMassage = await emailController.update({_id:id}, status);
+  return updateMassage
+  } catch (error) {
+    console.error("Error updating message:", error.message)
+    throw error
+  }
 }
 
 module.exports = {
