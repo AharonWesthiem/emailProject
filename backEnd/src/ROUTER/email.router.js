@@ -1,12 +1,14 @@
 const express = require("express")
 const router = express.Router()
 const emailServies = require("../SERVICES/email.servies")
+const userServies = require('../SERVICES/userServies')
 
  
 
 router.post("/",(req,res) =>{
     try {
         const newMessage = emailServies.addNewMassage(req.body)
+        const updeteTag = userServies.tagToUpdate(req.body)
         res.send(newMessage)
     } catch (error) {
         res.status(400).send(error)

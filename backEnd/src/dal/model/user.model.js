@@ -23,10 +23,28 @@ const emailUserSchema = new mongoos.Schema({
     createdDate : {
         type : Date,
         default : Date.now
-     }
+     },
+     tag: {
+        read: [{
+          type: String,
+          required: true,
+        }],
+        unread: [{
+          type: String,
+          required: true,
+        }],
+        trashRead: [{
+          type: String,
+          required: true,
+        }],
+        trashUnRead: [{
+          type: String,
+          required: true,
+        }],
+      },
 })
 
 
-const userModel = mongoos.model('userE', emailUserSchema)
+const userModel = mongoos.model('users', emailUserSchema)
 
 module.exports = userModel;
