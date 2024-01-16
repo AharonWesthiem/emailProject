@@ -1,8 +1,18 @@
 
+*{
+  padding: 0;
+  margin: 0;
+  /* position: relative; */
+}
+
 nav>ul>li{
   margin: 10px;
   background-color: black;
   gap: 10px;
+}
+nav{
+  /* position: fixed; */
+  /* z-index: 1; */
 }
   /* #root {
   max-width: 1280px;
