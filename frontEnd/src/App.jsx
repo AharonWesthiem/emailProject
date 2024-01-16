@@ -4,8 +4,9 @@ import './App.css'
 function App() {
   return (
     <>
-    <Layuot/>
-  
+    <div className="h-5/6">
+    <Layuot />
+    </div>
     {/* <h1 className="text-4xl font-bold underline">
       Hello world!
     </h1> */}

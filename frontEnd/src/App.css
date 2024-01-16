@@ -4,8 +4,16 @@
   margin: 0;
   /* position: relative; */
 }
+#root{
+  max-width:  99vw;
+  max-height: 95vh;
+  width:  99vw;
+  height: 95vh;
+
+}
 
 nav>ul>li{
+  width: 100%;
   margin: 10px;
   background-color: black;
   gap: 10px;
