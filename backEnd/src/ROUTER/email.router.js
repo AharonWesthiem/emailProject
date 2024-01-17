@@ -17,6 +17,7 @@ router.post("/",(req,res) =>{
 })
 
 router.get("/", async(req,res)=> {
+    
     let data = await emailServies.getAllMessages()
     res.send(data)
 })
