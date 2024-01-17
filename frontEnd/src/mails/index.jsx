@@ -10,6 +10,7 @@ export default function mails() {
   <div className='w-full h-auto  bg-rose-50	rounded-md'>
     <Routes>
         <Route path='/:type' element={<AllMails />}/>
+        <Route index element={<AllMails />}/>
         <Route path='/new' element={<NewMessage/>}/>
         <Route path='/message/' element={<ReadMessage/>}/>
   </Routes>

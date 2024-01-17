@@ -7,45 +7,42 @@ import { Link, Router } from "react-router-dom";
 export default function Nav() {
   return (
     <>
-      <nav>
-        <ul className="flex-row p-1 w-44 ">
+      <nav className="w-2/12 ">
+        <ul className="w-full flex-row p-2  ">
           <Link to="/new">
-            <li className="p-2  shadow-md bg-rose-50  text-orange-900 flex justify-center ">
-              
-                <TbMailPlus className=" text-2xl " />
-              <i  >New email </i>
-              
-            </li> 
-            </Link>
-            
-            <li className="p-2 shadow-md bg-rose-50 text-orange-900 flex justify-center">
-              <Link  to='/to'>
-                <TbMailDown className="inline grow-0 text-2xl " />
-              <i className="grow">Inbox </i>
-              </Link>
+            <li className="p-2 w-full shadow-md bg-rose-50  text-orange-900 grid grid-flow-col-dense  hover:bg-rose-300  hover:scale-110">
+              <TbMailPlus className=" text-2xl " />
+              <i >New email</i>
+
             </li>
-            
-            <li className="p-2 shadow-md bg-rose-50 text-orange-900 flex justify-center">
-            <Link  to='/from'>
+          </Link>
+          <Link to='/to'>
+            <li className="p-2 w-full mt-2 shadow-md bg-rose-50 text-orange-900 grid grid-flow-col-dense  hover:bg-rose-300  hover:scale-110">
+              <TbMailDown className="inline text-2xl " />
+              <i >Inbox </i>
+            </li>
+          </Link>
+          <Link to='/from'>
+            <li className="p-2  w-full mt-2 shadow-md bg-rose-50 text-orange-900 grid grid-flow-col-dense hover:bg-rose-300  hover:scale-110">
               <TbMailUp className="inline text-2xl " />
               <i>Outbox</i>
-              </Link>
             </li>
+          </Link>
+          <Link to='/unread'>
+            <li className="p-2 w-full mt-2 shadow-md bg-rose-50 text-orange-900 grid grid-flow-col-dense hover:bg-rose-300  hover:scale-110 ">
 
-            <li className="p-2  shadow-md bg-rose-50 text-orange-900 flex justify-center">
-            <Link  to='/unread'>
               <MdOutlineMarkEmailUnread className="inline text-2xl " />
               <i>unread</i>
-              </Link>
-            </li>
 
-            <li className="p-2 shadow-md bg-rose-50 text-orange-900 flex justify-center">
-            <Link  to='/trash'>
+            </li>
+          </Link>
+          <Link to='/trash'>
+            <li className="p-2 mt-2 w-full  shadow-md bg-rose-50 text-orange-900 grid grid-flow-col-dense hover:bg-rose-300  hover:scale-110">
               <IoTrashOutline className="inline text-2xl " />
               <i>Garbage </i>
-              </Link>
+
             </li>
-          
+          </Link>
         </ul>
       </nav>
     </>
