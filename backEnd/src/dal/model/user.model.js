@@ -27,19 +27,15 @@ const emailUserSchema = new mongoos.Schema({
      tag: {
         read: [{
           type: String,
-          required: true,
         }],
         unread: [{
           type: String,
-          required: true,
         }],
         trashRead: [{
           type: String,
-          required: true,
         }],
         trashUnRead: [{
           type: String,
-          required: true,
         }],
       },
 })

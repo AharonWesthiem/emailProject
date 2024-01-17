@@ -1,6 +1,5 @@
 const userModel = require("../model/user.model");
-require("dotenv").config();
-const DB = require("../model/db");
+ 
 
 async function create(data) {
   return userModel.create(data);
@@ -8,44 +7,53 @@ async function create(data) {
 
 async function read() {
   try {
-    const u = await userModel.find({});
-    console.log(u);
-    return u;
+    await userModel.find({});
   } catch (error) {
     console.error("Error reading users:", error);
-    throw error; // Re-throw the error to handle it at a higher level
   }
 }
 
 async function readOne(filter){
-     return userModel.findOne(filter)
+  return userModel.findOne(filter)
 }
-//  mail to push to relevent tag arr
-async function tagToUpdate(userEmail) {
-  const user = await readOne({email: userEmail});
 
-  // const userToUpdate = user.find((user) => user.email === userEmail);
-  console.log(user);
 
-  // console.log(userToUpdate);
-  const updatetag = await userModel(
-       
-  )
+async function userTagToUpdate(userAddress,tagName ,query) {
+  for(let email of userAddress){
+    const user = await readOne({email: email.trim()});
+    user.tag[tagName].push(query)
+    await user.save()
+  }
 }
+
+
+
+
+
+
+
 
 const go = async () => {
-  await DB.conect();
+ await DB.conect();
+let user = {
+  firstName: "aharon",
+  lastName: "westhiem",
+  email: "aharon@hatal.idf",
+  password: "12345"
+}
 
-  try {
-    await tagToUpdate();
-  } catch (error) {
-    console.error("Error:", error);
-  }
+create(user)
+  // try {
+  //   await tagToUpdate();
+  // } catch (error) {
+  //   console.error("Error:", error);
+  // }
 };
-go();
+// go();
 
 module.exports = {
   create,
   read,
-  // tagToUpdate
+  readOne,
+  userTagToUpdate
 };
