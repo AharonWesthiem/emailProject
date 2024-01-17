@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const  url_mongo = process.env.MONGO_URL
-console.log(url_mongo);
+
 
 
 const conect  = async() => {

@@ -14,6 +14,7 @@ async function read() {
 }
 
 async function readOne(filter){
+  console.log(filter)
   return userModel.findOne(filter)
 }
 

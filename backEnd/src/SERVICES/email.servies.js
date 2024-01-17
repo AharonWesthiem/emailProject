@@ -1,5 +1,5 @@
 const emailController = require("../dal/controller/email.controller");
-const { tagToUpdate } = require("./user.Servies");
+const { tagToUpdate } = require("./user.servies");
 const userController = require('../dal/controller/user.controller')
 async function getAllMessages() {
   return await emailController.read();

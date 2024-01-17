@@ -1,100 +1,85 @@
 const express = require("express")
 const router = express.Router()
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const userServies  = require("../SERVICES/user.servies");
-const { validate } = require("../dal/model/user.model");
+const auth = require('../autn/autn')
 
-router.post("/", async (req,res) => {
-    try {
-        const newUser = await userServies.addNeeUser(req.body)
-        res.send(newUser)
-    } catch (error) {
-        res.status(400).send(error)
-    }
-})
-
-
-function authentication(req, res, next) {
-    const authorization = req.headers.authorization;
-    if (!authorization) {
-        return res.status(401).send();
-    }
-    const token = authorization.split(" ")[1];
-    if (!token) {
-        return res.status(401).send();
-    }
-    try {
-        const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
-        const user = userModel.model.find((user) => user.id === decoded.id);
-        req.user = user;
-        next();
-    } catch (error) {
-        res.status(403).send();
-    }}
- 
-
-// router.post("/",(req,res) =>{
+// router.post("/", async (req,res) => {
 //     try {
-//         const newMessage = emailServies.addNewMassage(req.body)
-//         res.send(newMessage)
+//         const newUser = await userServies.addNeeUser(req.body)
+//         res.send(newUser)
 //     } catch (error) {
 //         res.status(400).send(error)
 //     }
-    
 // })
-async function validation(req, res, next) {
-    // const user = userServies.getUser((user) => user.email === req.body.email)
-// validation
-// }
-}
 
-router.get("/user/login", authentication, async(req,res)=> {
+
+router.get("/",auth.authentication,  async(req,res)=> {
+    const user =await userServies.getUser( req.user)
+    res.send(user);
+})
+
+
+
+
+
+router.post("/login",  async(req,res)=> {
+    const error = false
     try {
-        const user = userServies.getUser((user) => user.email === req.body.email);
-        if (!user) {
+        const user =await userServies.getUser(req.body.email);
+        console.log(user);
+        //בדיקת קיימות היוזר 
+        if (!user) { 
             error = true;
         } else {
+            // בדיקת סיסמא
             const match = await bcrypt.compare(
                 req.body.password,
                 user.password
-            );
+                
+            );console.log(match)
             if (!match) {
                 error = true;
             }
-        }
-        if (error) {
+        }if(error){
             return res.status(401).send();
         }
-        const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
-        res.json({ id: user.id, username: user.username, token });
+        //יוזר קיים וסיסמא תואמת 
+        const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET);
+        res.send(token);
+
     } catch (error) {
         console.log(error);
         res.status(500).send();
     }
+        
+})
 
-    let data = await userServies.getUser(req.email)
-    res.send(data)
+
+router.post("/signup", async(req,res)=> {
+    try {
+        const hashed = await bcrypt.hash(req.body.password, 10);
+        const user=({
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            email:req.body.email,
+            password: hashed,
+        });
+         const createUser = await userServies.addNeeUser(user)
+        res.status(201).send(createUser);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+});   
+
+module.exports=router
+
+
+router.put("/user/",  async(req,res)=> {
+
 })
 
 
 
-
-
-   
-//         const user = .find((user) => user.username === req.body.username);
-//         if (!user) {
-//             error = true;
-//         } else {
-//             const match = await bcrypt.compare(
-//                 req.body.password,
-//                 user.password
-//             );
-//             if (!match) {
-//                 error = true;
-//             }
-//         }
-//         if (error) {
-//             return res.status(401).send();
-//         }
-//     let data = await userServis.user()
-//     res.send(data)
-// })

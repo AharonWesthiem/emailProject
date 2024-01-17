@@ -1,7 +1,7 @@
 const mongoos = require('mongoose')
 
 
-const emailUserSchema = new mongoos.Schema({
+const UserSchema = new mongoos.Schema({
     firstName : {
         type :String,
         required: true
@@ -24,23 +24,14 @@ const emailUserSchema = new mongoos.Schema({
         type : Date,
         default : Date.now
      },
-     tag: {
-        read: [{
-          type: String,
-        }],
-        unread: [{
-          type: String,
-        }],
-        trashRead: [{
-          type: String,
-        }],
-        trashUnRead: [{
-          type: String,
-        }],
-      },
+    img: {
+        type :String,
+        required:false
+    } 
+     
 })
 
 
-const userModel = mongoos.model('users', emailUserSchema)
+const userModel = mongoos.model('userMail', UserSchema)
 
 module.exports = userModel;
