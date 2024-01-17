@@ -47,5 +47,6 @@ go();
 module.exports = {
   create,
   read,
+  readOne
   // tagToUpdate
 };
