@@ -3,7 +3,14 @@ const router = express.Router()
 const userServies  = require("../SERVICES/user.servies");
 const { validate } = require("../dal/model/user.model");
 
-
+router.post("/", async (req,res) => {
+    try {
+        const newUser = await userServies.addNeeUser(req.body)
+        res.send(newUser)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
 
 
 function authentication(req, res, next) {
@@ -34,14 +41,14 @@ function authentication(req, res, next) {
 //     }
     
 // })
-async function validation(req, res, next){
+async function validation(req, res, next) {
     // const user = userServies.getUser((user) => user.email === req.body.email)
 // validation
 // }
+}
 
-router.get("/user/login",, authentication, async(req,res)=> {
+router.get("/user/login", authentication, async(req,res)=> {
     try {
-        const user = userServies.getUser((user) => user.email === req.body.email);
         const user = userServies.getUser((user) => user.email === req.body.email);
         if (!user) {
             error = true;

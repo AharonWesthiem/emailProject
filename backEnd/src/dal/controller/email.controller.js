@@ -3,7 +3,6 @@ const emailModel = require("../model/email.model");
  
 
 async function create(data) {
-  console.log(data);
   return await emailModel.create(data);
 }
 

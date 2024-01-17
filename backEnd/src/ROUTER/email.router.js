@@ -1,16 +1,16 @@
 const express = require("express")
 const router = express.Router()
 const emailServies = require("../SERVICES/email.servies")
-const userServies = require('../SERVICES/userServies')
 
  
 
-router.post("/",(req,res) =>{
+router.post("/",async (req,res) =>{
     try {
-        const newMessage = emailServies.addNewMassage(req.body)
-        const updeteTag = userServies.tagToUpdate(req.body)
+        const newMessage = await emailServies.addNewMassage(req.body)
+        
         res.send(newMessage)
     } catch (error) {
+        console.log(error);
         res.status(400).send(error)
     }
     

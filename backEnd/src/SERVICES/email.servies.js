@@ -1,5 +1,6 @@
 const emailController = require("../dal/controller/email.controller");
-
+const { tagToUpdate } = require("./user.Servies");
+const userController = require('../dal/controller/user.controller')
 async function getAllMessages() {
   return await emailController.read();
 }
@@ -12,9 +13,17 @@ async function addNewMassage(data) {
     message: data.message,
     createDate: new Date(),
   };
-  const newMassage = emailController.create(massageObj);
-  return newMassage;
+  const addNewMessage = await emailController.create(massageObj);
+  tagToUpdate(addNewMessage.to,addNewMessage._id)
+  // const tagToUpdate = 
+  // const update = await userController.tagToUpdate(newMassage.to,"unread",  tagToUpdate)
+  // return {newMassage, update};
 }
+
+// async function tagToUpdate(user, messageId){
+//   const update =  await userController.tagToUpdate(user, "unread", messageId)
+//   return update
+// }
  
 async function getMessage(type, email) {
   if (type === "from" ||  type === "to") {
@@ -51,4 +60,5 @@ module.exports = {
   addNewMassage,
   getMessage,
   MessageToUpdata,
+  tagToUpdate
 };
