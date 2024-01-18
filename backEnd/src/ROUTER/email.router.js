@@ -3,8 +3,8 @@ const router = express.Router()
 const emailServies = require("../SERVICES/email.servies")
 
  
+router.post("/", auth.authentication,async (req,res) =>{
 
-router.post("/",async (req,res) =>{
     try {
         const newMessage = await emailServies.addNewMassage(req.body)
         
@@ -17,7 +17,6 @@ router.post("/",async (req,res) =>{
 })
 
 router.get("/", async(req,res)=> {
-    
     let data = await emailServies.getAllMessages()
     res.send(data)
 })

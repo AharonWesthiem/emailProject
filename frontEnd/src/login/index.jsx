@@ -13,7 +13,7 @@ export default function login() {
       password : fData.password
     }
     // console.log(user);
-    axios.post('http://192.168.1.181:2500/user/login', user)
+    axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
       res.data
     })
