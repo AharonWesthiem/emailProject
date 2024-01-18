@@ -23,20 +23,10 @@ const emailSchema = new mongoose.Schema({
     },
 
     createDate: {
-        type : Date,
+        type: Date,
         default: Date.now
-    }})
 
 
-    // status: {
-    //     type: [{
-    //       type: String,
-    //       enum: ["read", "unread", "trash"],
-    //       default: "unread",
-    //     }],
-    //     default: ["unread"], // Set default value for the entire array
-    //   },
-    // },
 
 
     // tag: {
