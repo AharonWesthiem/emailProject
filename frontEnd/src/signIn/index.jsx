@@ -16,7 +16,7 @@ export default function SignIn() {
           email: fData.email,
           password : fData.password
         }
-        axios.post('http://192.168.1.181:2500/user/signin', user)
+        axios.post('http://localhost/user/signup', user)
         .then(res =>{
           res.data
           
