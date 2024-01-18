@@ -16,7 +16,7 @@ const auth = require('../autn/autn')
 
 
 router.get("/",auth.authentication,  async(req,res)=> {
-    const user =await userServies.getUser( req.user)
+    const user =await userServies.getUser( req.body.user)
     res.send(user);
 })
 
@@ -67,6 +67,7 @@ router.post("/signup", async(req,res)=> {
             password: hashed,
         });
          const createUser = await userServies.addNeeUser(user)
+         console.log(createUser)
         res.status(201).send(createUser);
     } catch (error) {
         console.log(error);

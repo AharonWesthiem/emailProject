@@ -14,7 +14,7 @@ const emailSchema = new mongoose.Schema({
 
     }],
 
-    title : {
+    title: {
         type: String,
     },
 
@@ -26,33 +26,25 @@ const emailSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
 
+    },
+
+    tags: [{
+        email: {
+            type: String,
+        },
+        status: [{
+            type: String,
+            enum: ["read", "unread", "trash"],
+            default: ["unread"]
+            
+        }],
+    }]
+})
+
+//  default: ["unread"], // Set default value for the entire array
 
 
 
-    // tag: {
-    //     read: [{
-    //       email: {
-    //         type: String,
-    //         required: true,
-    //       },
-    //       status: {
-    //         type: String,
-    //         enum: ["unread", "read", "trash"],
-    //         default: "unread",
-    //       },
-    //     }],
-    //     trash: [{
-    //       email: {
-    //         type: String,
-    //         required: true,
-    //       },
-    //       status: {
-    //         type: Boolean,
-    //         default: false,
-    //       },
-    //     }],
-    //   },
-    // });
 
 
 

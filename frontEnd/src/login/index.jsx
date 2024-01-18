@@ -1,13 +1,12 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
-export default function login() {
+export default function Login() {
 
   const [fData, setfData] = useState({})
-  
- 
+const [first, setfirst] = useState(second) 
 
- const  handleRequestAxios = () => {
+ const  handleRequestAxios = async () => {
     const user = {
       email: fData.email,
       password : fData.password
@@ -16,6 +15,7 @@ export default function login() {
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
       res.data
+      setToken(res.data.token)
     })
     .catch(error => {
       console.error('Error', error)

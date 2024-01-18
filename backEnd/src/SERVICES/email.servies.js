@@ -7,17 +7,21 @@ async function getAllMessages() {
 
 async function addNewMassage(data) {
   let massageObj = {
-    from: data.from,
+    from: data.user,
     to:data.to,
     title: data.title,
     message: data.message,
     createDate: new Date(),
+    tags:{
+      email:data.to,
+      status:"unread"
+    },
   };
   const addNewMessage = await emailController.create(massageObj);
-  tagToUpdate(addNewMessage.to,addNewMessage._id)
+  // tagToUpdate(addNewMessage.to,addNewMessage._id)
   // const tagToUpdate = 
   // const update = await userController.tagToUpdate(newMassage.to,"unread",  tagToUpdate)
-  // return {newMassage, update};
+  return addNewMessage;
 }
 
 // async function tagToUpdate(user, messageId){
@@ -27,13 +31,16 @@ async function addNewMassage(data) {
  
 async function getMessage(type, email) {
   if (type === "from" ||  type === "to") {
+    //צריך לחפש מה הסטטוס של ההודעה 
+
     return emailController.read({ [type]: email });
+
   }
    
 
    
   if (type === "trash") {
-    return emailController.readTrash( email);
+    return emailController.readTrash(email);
   }
   }
      
@@ -47,7 +54,7 @@ async function MessageToUpdata(id, status) {
   if(!exisingMessage){
     throw new Error("Message not found")
   } 
-  let updateMassage = await emailController.update({_id:id}, status);
+  let updateMassage = await emailController.update({_id:id}, tags.status);
   return updateMassage
   } catch (error) {
     console.error("Error updating message:", error.message)

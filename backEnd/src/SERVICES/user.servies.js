@@ -1,33 +1,46 @@
-const emailController = require('../dal/controller/email.controller')
-const userController = require('../dal/controller/user.controller')
+const emailController = require("../dal/controller/email.controller");
+const userController = require("../dal/controller/user.controller");
 
+// async function exisingMessage(data){
+//     const messageExist = await emailController.readOne({_id: data.id})
+//   if(!messageExist){
+//     throw new Error("Message not found")
+//   }
+//   return messageExist
+// }
 
-async function getUser(data){
-    return userController.readOne(data)
+async function addNeeUser(data) {
+  const newUser = {
+  //   firstName: data.firstName,
+  //   lastname: data.lastname,
+  //   password: data.password
+  // };
+  const addUser = await userController.create(data)
+  return addUser
+}
+async function getUser(filter) {
+  console.log(filter)
+  const user = await userController.readOne({email:filter})
+  return user
 }
 
 
 
 
 
+async function tagToUpdate(user, messageId) {
+  // exisingMessage(user)
 
-
-async function exisingMessage(data){
-    const messageExist = await emailController.readOne({_id: data.id})
-    console.log({_id: data.id});
-  if(!messageExist){
-    throw new Error("Message not found")
-  } 
-  return data.body
+  // const update = await userController.userTagToUpdate(
+  //   user,
+  //   "trashRead",
+  //   messageId
+  // );
+//   return update;
 }
 
-async function tagToUpdate(data){
-    exisingMessage(data)
-    const userTugToUpdate = data.to
-     userController.tagToUpdate(userTugToUpdate)
-}
-
-module.exports ={
-     tagToUpdate
-    
-    }
+module.exports = {
+  addNeeUser,
+  tagToUpdate,
+  getUser
+};

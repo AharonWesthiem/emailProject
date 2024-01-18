@@ -14,6 +14,7 @@ async function readOne(filter) {
 }
 
 async function readTrash(email) {
+//לחפש הודעה שיש לה אובייקט +trash
   const query = emailModel.find();
   const myQuery = query.or([
     { to: email, status: "trash" },

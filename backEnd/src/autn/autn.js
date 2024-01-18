@@ -14,7 +14,7 @@ function authentication(req, res, next) {
     try {
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         // const user = userServies.getUser(decoded.email);
-        req.user = decoded.email;
+        req.body.user = decoded.email;
         next();
     } catch (error) {
         res.status(403).send();
