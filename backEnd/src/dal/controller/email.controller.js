@@ -7,8 +7,10 @@ async function create(data) {
 }
 
 async function read(filter) {
-  return await emailModel.find({ ...filter, status: { $nin: ["trash"] } });
+  return await emailModel.find({ ...filter,"tags.status": { $ne: ["trash"] } });
 }
+
+
 async function readOne(filter) {
   return await emailModel.findOne({ ...filter, status: { $nin: ["trash"] } });
 }

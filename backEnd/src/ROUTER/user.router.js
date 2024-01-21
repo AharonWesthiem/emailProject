@@ -66,7 +66,7 @@ router.post("/signup", async(req,res)=> {
             email:req.body.email,
             password: hashed,
         });
-         const createUser = await userServies.addNeeUser(user)
+         const createUser = await userServies.addNewUser(user)
          console.log(createUser)
         res.status(201).send(createUser);
     } catch (error) {

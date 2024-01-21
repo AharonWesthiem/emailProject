@@ -7,14 +7,14 @@ async function create(data) {
 
 async function read() {
   try {
-    await userModel.find({});
+    await userModel.find();
   } catch (error) {
     console.error("Error reading users:", error);
   }
 }
 
 async function readOne(filter){
-  console.log(filter)
+  // console.log(filter)
   return userModel.findOne(filter)
 }
 
@@ -27,35 +27,21 @@ async function userTagToUpdate(userAddress,tagName ,query) {
   }
 }
 
-
-
-
-
-
-
-
-const go = async () => {
- await DB.conect();
-let user = {
-  firstName: "aharon",
-  lastName: "westhiem",
-  email: "aharon@hatal.idf",
-  password: "12345"
+async function readList(listOfUsers) {
+  const users = await userModel.find({email: {$in: listOfUsers}})
+  console.log(users.map(user => user.email));
+  return users.map(user => user.email)
 }
 
-// create(user)
-  // try {
-  //   await tagToUpdate();
-  // } catch (error) {
-  //   console.error("Error:", error);
-  // }
-};
-// go();
+
+
+
 
 module.exports = {
+  readList,
   create,
   read,
   readOne,
   userTagToUpdate
-  // tagToUpdate
+
 };

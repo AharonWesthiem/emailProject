@@ -9,12 +9,12 @@ const userController = require("../dal/controller/user.controller");
 //   return messageExist
 // }
 
-async function addNeeUser(data) {
-  const newUser = {
-    firstName: data.firstName,
-    lastname: data.lastname,
-    password: data.password
-  };
+async function addNewUser(data) {
+  // const newUser = {
+  //   firstName: data.firstName,
+  //   lastname: data.lastname,
+  //   password: data.password
+  // };
   const addUser = await userController.create(data)
   return addUser
 }
@@ -40,7 +40,7 @@ async function tagToUpdate(user, messageId) {
 }
 
 module.exports = {
-  addNeeUser,
+  addNewUser,
   tagToUpdate,
   getUser
 };
