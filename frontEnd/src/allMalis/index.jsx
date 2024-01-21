@@ -4,6 +4,7 @@ import Message from '../message'
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import tokenContext from '../context/tokenContexst'
 // import CartContext from './context/CartContext'
 
 
@@ -16,10 +17,14 @@ export default function allMalis() {
     if(!type || type!=="to" && type !=="trash" ) type = "from"
 
 
-
-
+const {token} = useContext(tokenContext)
+console.log(token);
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     useEffect(() => {
-        axios.get(`http://localhost:2500/email/${type}/${email}`)
+        axios.get(`http://localhost:2500/email/${type}`
+         
+
+        )
             .then((res) => {
                 setEmails(res.data)
                 console.log(res.data);

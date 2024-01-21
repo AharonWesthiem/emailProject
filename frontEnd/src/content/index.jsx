@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import NewMessage from '../newMessage'
 import ReadMessage from '../readMessage'
+import SignIn from '../signIn'
 
 
 export default function Content() {
@@ -16,7 +17,7 @@ export default function Content() {
 
       <div className='w-10/12 flex justify-center ml-2 bg-rose-50	rounded-md'>
         <Routes>
-          <Route index element={<AllMails />} />
+          {/* <Route index element={<AllMails />} /> */}
           <Route path='/:type' element={<AllMails />} />
           <Route path='/new' element={<NewMessage />} />
           <Route path='/message/' element={<ReadMessage />} />

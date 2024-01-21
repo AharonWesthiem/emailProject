@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
  
     const [fData, setfData] = useState({})
-
+    const nav =  useNavigate()
     const handleChange = (e) => {
         setfData({ ...fData, [e.target.name]: e.target.value });
       };
@@ -19,6 +20,7 @@ export default function SignIn() {
         axios.post('http://localhost:2500/user/signup', user)
         .then(res =>{
           res.data
+          nav('/login')
           
         })
         .catch(error => {

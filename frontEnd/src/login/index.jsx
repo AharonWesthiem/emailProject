@@ -1,12 +1,15 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
+import tokenContext from "../context/tokenContexst";
+import { useNavigate } from 'react-router-dom';
+import SignIn from '../signIn';
 
 export default function Login() {
+  const nav = useNavigate()
 
   const [fData, setfData] = useState({})
-const [first, setfirst] = useState(second) 
-
- const  handleRequestAxios = async () => {
+  const {token, setToken} = useContext(tokenContext)
+ const  handleRequestAxios = () => {
     const user = {
       email: fData.email,
       password : fData.password
@@ -14,21 +17,21 @@ const [first, setfirst] = useState(second)
     // console.log(user);
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
-      res.data
-      setToken(res.data.token)
+      setToken(res.data);
+      console.log(token);
+      
+      // setToken(res.data.token)
     })
-    .catch(error => {
-      console.error('Error', error)
-    })
+     
   }
 
   const handleChange = (e) => {
     setfData({...fData, [e.target.name]: e.target.value})
-    console.log(e);
+    // console.log(e);
   }
 
   const handleSignUp = (e) =>{
-    console.log(e);
+    // console.log(e);
   }
   return (
     <div className="bg-gray-100 h-screen flex items-center justify-center  text-rose-600">
@@ -64,10 +67,11 @@ const [first, setfirst] = useState(second)
         </form>
         <div className="mt-4">
           <p className="text-sm text-gray-600">
-            Don't have an account? <button onClick={handleSignUp} className="text-rose-500">Sign Up</button>
+            Don't have an account? <button onClick={() => nav('/signin')} className="text-rose-500">Sign Up</button>
           </p>
       </div>
     </div>
+    {/* <SignIn/> */}
     </div>
   );
 }

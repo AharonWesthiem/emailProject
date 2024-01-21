@@ -27,7 +27,7 @@ router.get("/",auth.authentication,  async(req,res)=> {
 router.post("/login",  async(req,res)=> {
     const error = false
     try {
-        const user =await userServies.getUser(req.body.email);
+        const user = await userServies.getUser(req.body.email);
         console.log(user);
         //בדיקת קיימות היוזר 
         if (!user) { 
