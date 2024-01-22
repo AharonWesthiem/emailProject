@@ -17,7 +17,8 @@ export default function Login() {
     // console.log(user);
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
-      setToken(res.data);
+      localStorage.setItem("token", JSON.stringify(res.data[0]))
+      setToken(res.data[0]);
       console.log(res.data);
       
       
@@ -31,9 +32,9 @@ export default function Login() {
     // console.log(e);
   }
   
-  const handleSignUp = (e) =>{
-    // console.log(e);
-  }
+  // const handleSignUp = (e) =>{
+  //   // console.log(e);
+  // }
   console.log(token);
   return (
     <div className="bg-gray-100 h-screen flex items-center justify-center  text-rose-600">

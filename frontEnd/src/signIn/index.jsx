@@ -19,7 +19,7 @@ export default function SignIn() {
         }
         axios.post('http://localhost:2500/user/signup', user)
         .then(res =>{
-          res.data
+          console.log(res.data)
           nav('/login')
           
         })
