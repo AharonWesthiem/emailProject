@@ -5,17 +5,18 @@ import Footer from '../footer'
 import Login from '../login'
 import { useState } from 'react'
 import tokenContexst from '../context/tokenContexst'
-import { Route, Router, Routes } from 'react-router-dom'
+import { Route, Router, Routes, json } from 'react-router-dom'
 import SignIn from '../signIn'
 
 export default function Layuot() {
 
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState(localStorage.token)
+
 
   
   return (<>
   <tokenContexst.Provider value={ {token, setToken}}>
-    {token ?
+    {token?
     <div className='h-full text-1xl mx-3'>
 
     <Header />

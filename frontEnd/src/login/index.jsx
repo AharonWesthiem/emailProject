@@ -18,7 +18,8 @@ export default function Login() {
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
       setToken(res.data);
-      console.log(token);
+      console.log(res.data);
+      
       
       // setToken(res.data.token)
     })
@@ -29,10 +30,11 @@ export default function Login() {
     setfData({...fData, [e.target.name]: e.target.value})
     // console.log(e);
   }
-
+  
   const handleSignUp = (e) =>{
     // console.log(e);
   }
+  console.log(token);
   return (
     <div className="bg-gray-100 h-screen flex items-center justify-center  text-rose-600">
       <div className="bg-rose-50 p-8 rounded shadow-md w-96 ">
