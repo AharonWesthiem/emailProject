@@ -10,7 +10,7 @@ import SignIn from '../signIn'
 
 export default function Layuot() {
 
-  const [token, setToken] = useState()
+  const [token, setToken] = useState(localStorage.getItem("token")?localStorage.getItem("token"):"")
 
 
   
@@ -18,7 +18,6 @@ export default function Layuot() {
   <tokenContexst.Provider value={ {token, setToken}}>
     {token?
     <div className='h-full text-1xl mx-3'>
-
     <Header />
      <Content />
      <Footer/>
