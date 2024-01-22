@@ -17,17 +17,10 @@ export default function Content() {
 
       <div className='w-10/12 flex justify-center ml-2 bg-rose-50	rounded-md'>
         <Routes>
-<<<<<<< HEAD
-          {/* <Route index element={<AllMails />} /> */}
-          <Route path='/:type' element={<AllMails />} />
-          <Route path='/new' element={<NewMessage />} />
-          <Route path='/message/' element={<ReadMessage />} />
-=======
           <Route index element={<AllMails />} />
-          <Route path='/:type' element={<AllMails />}/>
+          {/* <Route path='/:type' element={<AllMails />}/> */}
           <Route path='/new' element={<NewMessage />}/>
           <Route path='/message/' element={<ReadMessage/>}/>
->>>>>>> a8e896865afa8f76f417261f5690b2bd2638610f
         </Routes>
         {/* <Mails/> */}
       </div>
