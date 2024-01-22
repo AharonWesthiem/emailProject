@@ -5,6 +5,7 @@ const userController = require('../dal/controller/user.controller')
 
 
 
+
 async function getAllMessages() {
   return await emailController.read();
 }
@@ -70,25 +71,32 @@ async function getMessage(type, email) {
 
    
 
-async function MessageToUpdata(id, status) {
+async function MessageToUpdata(id, email ,update){
+  console.log(id, email ,update)
+
+  let user = await emailController.readToUpdate(id, email ,update)
+
+  // console.log(user)
+  return user
+}
   // try {
   //  const exisingMessage = await emailController.readOne({_id: id})
   // //  console.log({_id: id});
   // if(!exisingMessage){
   //   throw new Error("Message not found")
   // } 
-  let updateMassage = await emailController.update({_id:id},status);
-  return updateMassage
-  // } catch (error) {
+  // let updateMassage = await emailController.update({_id:id},status);
+  // return updateMassage
+  // // } catch (error) {
   //   console.error("Error updating message:", error.message)
   //   throw error
   // }
-}
+
 
 module.exports = {
   getAllMessages,
   addNewMassage,
   getMessage,
   MessageToUpdata,
-  tagToUpdate
+
 };

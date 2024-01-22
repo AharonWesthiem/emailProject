@@ -3,7 +3,7 @@ const  url_mongo = process.env.MONGO_URL
 
 
 
-const conect  = async() => {
+const connect  = async() => {
     try {
 
       await  mongoose.connect(url_mongo)
@@ -15,5 +15,5 @@ const conect  = async() => {
 }
 
 module.exports = {
-  conect
+  connect
 }

@@ -24,7 +24,7 @@ router.get("/",auth.authentication,  async(req,res)=> {
 
 
 
-router.post("/login",  async(req,res)=> {
+router.post("/login", async(req,res)=> {
     const error = false
     try {
         const user = await userServies.getUser(req.body.email);
@@ -47,7 +47,8 @@ router.post("/login",  async(req,res)=> {
         }
         //יוזר קיים וסיסמא תואמת 
         const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET);
-        res.send(token);
+        // ,{expiresIn:"30m"}
+        res.send([token, user.email,user.firstName]);
 
     } catch (error) {
         console.log(error);

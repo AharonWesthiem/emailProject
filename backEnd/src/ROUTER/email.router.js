@@ -26,17 +26,26 @@ router.get('/:type',auth.authentication ,async(req,res)=>{
     let data = await emailServies.getMessage(type,email)
     res.send(data)
 })
+// async function handelstatus(){
+//     // let status= req.params.status
+
+
+// }
 
 
 
-router.put('/:messageId',auth.authentication, async (req,res) => {
-    
+router.put('/:messageId/:status', auth.authentication, async (req,res) => {
+    const masId = req.params.messageId
+    const stasus =req.params.status
+    const email = req.body.user
+
     try {
-        const updateMessage = emailServies.MessageToUpdata(req.params.messageId, req.body)
-        // console.log(req.query.status);
+        const updateMessage = await emailServies.MessageToUpdata(masId,email,stasus)
+        //   console.log(updateMessage)
+            
         res.send(updateMessage)
     } catch (error) {
-        res.status(400).send(error)
+        res.status(460).send(error)
     }
 })
 

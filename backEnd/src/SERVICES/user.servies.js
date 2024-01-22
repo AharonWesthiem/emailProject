@@ -28,19 +28,18 @@ async function getUser(filter) {
 
 
 
-async function tagToUpdate(user, messageId) {
-  // exisingMessage(user)
+// async function tagToUpdate(user, messageId) {
+//   // exisingMessage(user)
 
-  // const update = await userController.userTagToUpdate(
-  //   user,
-  //   "trashRead",
-  //   messageId
-  // );
-//   return update;
-}
+//   // const update = await userController.userTagToUpdate(
+//   //   user,
+//   //   "trashRead",
+//   //   messageId
+//   // );
+// //   return update;
+// }
 
 module.exports = {
   addNewUser,
-  tagToUpdate,
   getUser
 };
