@@ -16,7 +16,7 @@ export default function Login() {
     }
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
-      localStorage.setItem("token", JSON.stringify(res.data[0]))
+      localStorage.setItem("token", res.data[0])
       setToken(res.data[0]);
     })
   }

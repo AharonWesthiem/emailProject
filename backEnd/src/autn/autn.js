@@ -12,11 +12,13 @@ function authentication(req, res, next) {
         return res.status(401).send();
     }
     try {
+        console.log(token);
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         // const user = userServies.getUser(decoded.email);
         req.body.user = decoded.email;
         next();
     } catch (error) {
+        console.log(error);
         res.status(403).send();
     }
 }
