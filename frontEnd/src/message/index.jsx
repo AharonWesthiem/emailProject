@@ -7,7 +7,8 @@ export default function Messege({ mes }) {
         <>
 
             <td className='p-2' >from:  {from} <br />   to:  {to}</td>
-            <td className='flex justify-center items-center grow ' > {message}</td>
+            <td className='flex justify-center items-center grow ' > {message} </td>
+            <td></td>
             {/* <td className=''>{_id}</td> */}
         </>
 

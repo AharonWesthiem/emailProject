@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
 import Message from '../message'
-
+import { ImBin } from "react-icons/im";
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import tokenContext from '../context/tokenContexst'
@@ -36,9 +36,11 @@ export default function allMalis() {
             <tbody>
                 {emails.map((message) =>
                     <tr className='w-full flex justify-between  shadow-md border   p-2  '>
-                        <Message key={message} mes={message} />
-
-                    </tr>)}
+                        <Message key={message} mes={message}  />
+                        <td><i className=''><ImBin /></i></td>
+                    </tr>
+                    
+                    )}
 
             </tbody>
         </table>

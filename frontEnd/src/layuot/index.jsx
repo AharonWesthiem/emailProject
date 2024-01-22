@@ -10,7 +10,7 @@ import SignIn from '../signIn'
 
 export default function Layuot() {
 
-  const [token, setToken] = useState(localStorage.token)
+  const [token, setToken] = useState()
 
 
   

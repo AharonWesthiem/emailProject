@@ -15,4 +15,4 @@ app.use(express.json())
 app.use('/email', emailRouter )
 app.use('/user',userRouter )
 
-app.listen(3000, () => {console.log('server is up');})
+app.listen(2500, () => {console.log('server is up');})

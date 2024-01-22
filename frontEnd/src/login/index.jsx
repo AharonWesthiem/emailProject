@@ -17,7 +17,7 @@ export default function Login() {
     // console.log(user);
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
-      setToken(res.data);
+      setToken(res.data.token);
       console.log(res.data);
       
       

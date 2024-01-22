@@ -12,6 +12,8 @@ const handleChange = (e) => {
   })
   console.log(fData);
 }
+
+
   const sendMessage = () => {
     console.log(fData);
     try {
