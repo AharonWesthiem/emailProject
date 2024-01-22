@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import tokenContext from '../context/tokenContexst';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewMessage() {
 const [fData, setfData] = useState()
 const{token} = useContext(tokenContext)
+const nav = useNavigate()
+
 const handleChange = (e) => {
   console.log(e);
   setfData({
@@ -15,7 +18,6 @@ const handleChange = (e) => {
 
 
   const sendMessage = () => {
-    console.log(fData);
     try {
       axios.post('http://localhost:2500/email', fData,{
         headers: {
@@ -23,6 +25,7 @@ const handleChange = (e) => {
         }
       })
       setfData({})
+      nav("/")
     } catch (error) {
       console.log(error.message);
     }
