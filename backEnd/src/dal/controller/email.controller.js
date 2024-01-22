@@ -1,19 +1,26 @@
 const emailModel = require("../model/email.model");
- 
- 
+
+
 
 async function create(data) {
   return await emailModel.create(data);
 }
 
 async function read(filter) {
-  return await emailModel.find({ ...filter,"tags.status": { $ne: ["trash"] } });
+  return await emailModel.find({ ...filter, "tags.status": { $ne: ["trash"] } });
 }
-async function readToUpdate(id, email ,update) {
-  console.log(id, email ,update)
-  return await emailModel.updateOne(
-  {_id:id ,"tags.email":email},
-  { $addToSet:{ "tags.$.status":update}});
+async function readToUpdate(id, email, update) {
+  console.log(id, email, update)
+  if (update === "teash") {
+    return await emailModel.updateOne(
+      { _id: id, "tags.email": email },
+      { $addToSet: { "tags.$.status": update } });
+  }
+  if (update === "read") {
+    return await emailModel.updateOne(
+      { _id: id, "tags.email": email },
+      { $Set: { "tags.$.status": update } });
+  }
 }
 
 
@@ -35,18 +42,18 @@ async function update(id, data) {
 //   return trash;
 
 // }
-  // async function getUnread(email) {
-  //   const query = emailModel.find();
-  //   const myQuery = query.or([
-  //     { to: email, status: "unread" },
-  //     { from: email, status: "unread" },
-  //   ]);
-  //   const unread = await myQuery.exec();
-  //   return unread;
-  // }
+// async function getUnread(email) {
+//   const query = emailModel.find();
+//   const myQuery = query.or([
+//     { to: email, status: "unread" },
+//     { from: email, status: "unread" },
+//   ]);
+//   const unread = await myQuery.exec();
+//   return unread;
+// }
 
 
- 
+
 
 
 module.exports = {

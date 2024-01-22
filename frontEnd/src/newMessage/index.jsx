@@ -27,7 +27,7 @@ const handleChange = (e) => {
 
   }
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full scroll-smooth">
       <div className=" w-6/12 p-6 bg-rose-300 rounded-lg">
         <form onSubmit={(e) => e.preventDefault()} >
           <div className="text-2xl font-bold mb-4 text-center">New Message</div>
