@@ -41,7 +41,7 @@ router.put('/:messageId/:status', auth.authentication, async (req,res) => {
 
     try {
         const updateMessage = await emailServies.MessageToUpdata(masId,email,stasus)
-        //   console.log(updateMessage)
+          console.log("tesst",updateMessage)
             
         res.send(updateMessage)
     } catch (error) {

@@ -14,7 +14,13 @@ async function getAllMessages() {
 
 
 async function addNewMassage(data) {
-  let users = await userController.readList(data.to)
+  let arr =  data.to
+  if (data.to.includes(",")){
+    arr = data.to.split(",")
+
+  }
+
+  let users = await userController.readList(arr)
   console.log(users)
 
   let massageObj = {
@@ -77,7 +83,7 @@ async function MessageToUpdata(id, email, update) {
 
   let user = await emailController.readToUpdate(id, email, update)
 
-  // console.log(user)
+  console.log(user)
   return user
 }
 // try {

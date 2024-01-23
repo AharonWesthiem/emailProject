@@ -7,7 +7,7 @@ async function create(data) {
 }
 
 async function read(filter) {
-  return await emailModel.find({ ...filter, "tags.status": { $ne: ["trash"] } });
+  return await emailModel.find({ ...filter, "tags.status": { $nin: ["trash"] } });
 }
 async function readTresh(email ,status) {
   const query = emailModel.find();
@@ -36,8 +36,8 @@ async function readToUpdate(id, email, update) {
     return await emailModel.updateOne(
       { _id: id,
       "tags.email": email ,
-      "tags.status": ["unread"] },
-      { $set: { "tags.$.status.$": update } });
+      "tags.status": ["unread" ]},
+      { $set: { "tags.$.status.$": [update]}});
   }
 }
 
