@@ -34,7 +34,7 @@ const emailSchema = new mongoose.Schema({
         },
         status: [{
             type: String,
-            enum: ["read", "unread", "trash"],
+            enum: ["read", "unread", "trash","delete"],
             default: ["unread"]
             
         }],

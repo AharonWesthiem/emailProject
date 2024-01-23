@@ -9,17 +9,35 @@ async function create(data) {
 async function read(filter) {
   return await emailModel.find({ ...filter, "tags.status": { $ne: ["trash"] } });
 }
+async function readTresh(email ,status) {
+  const query = emailModel.find();
+    const myQuery = query.or([
+      { to: email, "tags.status":status},
+      { from: email, "tags.status":status },
+    ]);
+    const trash = await myQuery.exec();
+      return trash;
+  // return await emailModel.find({ ...filter, "tags.status":"trash"});
+}
+
 async function readToUpdate(id, email, update) {
+
   console.log(id, email, update)
-  if (update === "teash") {
+  if (update == "trash") {
+    console.log(update)
     return await emailModel.updateOne(
       { _id: id, "tags.email": email },
-      { $addToSet: { "tags.$.status": update } });
+      { $addToSet: { "tags.$.status":{$each:[update] }} });
   }
-  if (update === "read") {
+
+
+  if (update =="read") {
+    console.log(update)
     return await emailModel.updateOne(
-      { _id: id, "tags.email": email },
-      { $Set: { "tags.$.status": update } });
+      { _id: id,
+      "tags.email": email ,
+      "tags.status": ["unread"] },
+      { $set: { "tags.$.status.$": update } });
   }
 }
 
@@ -31,26 +49,7 @@ async function readOne(filter) {
 async function update(id, data) {
   return await emailModel.updateOne({ _id: id }, { "tags.status": data });
 }
-// async function readTrash(email) {
-// //לחפש הודעה שיש לה אובייקט +trash
-//   const query = emailModel.find();
-//   const myQuery = query.or([
-//     { to: email, status: "trash" },
-//     { from: email, status: "trash" },
-//   ]);
-//   const trash = await myQuery.exec();
-//   return trash;
 
-// }
-// async function getUnread(email) {
-//   const query = emailModel.find();
-//   const myQuery = query.or([
-//     { to: email, status: "unread" },
-//     { from: email, status: "unread" },
-//   ]);
-//   const unread = await myQuery.exec();
-//   return unread;
-// }
 
 
 
@@ -61,6 +60,7 @@ module.exports = {
   read,
   readOne,
   update,
-  readToUpdate
+  readToUpdate,
+  readTresh
   // getUnread,
 };
