@@ -2,40 +2,30 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import tokenContext from "../context/tokenContexst";
 import { useNavigate } from 'react-router-dom';
-import SignIn from '../signIn';
 
 export default function Login() {
   const nav = useNavigate()
 
   const [fData, setfData] = useState({})
   const {token, setToken} = useContext(tokenContext)
+
  const  handleRequestAxios = () => {
     const user = {
       email: fData.email,
       password : fData.password
     }
-    // console.log(user);
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
       localStorage.setItem("token", res.data[0])
       setToken(res.data[0]);
-      console.log(res.data);
-      
-      
-      // setToken(res.data.token)
     })
-     
   }
 
   const handleChange = (e) => {
     setfData({...fData, [e.target.name]: e.target.value})
-    // console.log(e);
   }
   
-  // const handleSignUp = (e) =>{
-  //   // console.log(e);
-  // }
-  console.log(token);
+  
   return (
     <div className="bg-gray-100 h-screen flex items-center justify-center  text-rose-600">
       <div className="bg-rose-50 p-8 rounded shadow-md w-96 ">
@@ -74,7 +64,6 @@ export default function Login() {
           </p>
       </div>
     </div>
-    {/* <SignIn/> */}
     </div>
   );
 }
