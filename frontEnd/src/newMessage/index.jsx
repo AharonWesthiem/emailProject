@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import tokenContext from '../context/tokenContexst';
+import dataContext from '../context/dataContexst';
 import { useNavigate } from 'react-router-dom';
 
 export default function NewMessage() {
 const [fData, setfData] = useState()
-const{token} = useContext(tokenContext)
+const{token} = useContext(dataContext)
 const nav = useNavigate()
 
 const handleChange = (e) => {

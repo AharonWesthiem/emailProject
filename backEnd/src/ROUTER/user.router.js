@@ -48,7 +48,11 @@ router.post("/login", async(req,res)=> {
         //יוזר קיים וסיסמא תואמת 
         const token = jwt.sign({email: user.email}, process.env.TOKEN_SECRET);
         // ,{expiresIn:"30m"}
-        res.send([token, user.email,user.firstName]);
+        res.send({
+            token: token,
+            email: user.email,
+            firstName: user.firstName
+            });
 
     } catch (error) {
         console.log(error);

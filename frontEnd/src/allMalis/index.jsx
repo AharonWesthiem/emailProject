@@ -4,19 +4,19 @@ import Message from '../message'
 import { ImBin } from "react-icons/im";
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import tokenContext from '../context/tokenContexst'
+import dataContext from '../context/dataContexst'
 
 
 
 export default function allMalis() {
     const [emails, setEmails] = useState([])
     let { type } = useParams()
-    const { token } = useContext(tokenContext)
+    const { data } = useContext(dataContext)
 
     if (!type || type !== "to" && type !== "trash") type = "from"
 
 
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
     useEffect(() => {
         axios.get(`http://localhost:2500/email/${type}`)
             .then((res) => {

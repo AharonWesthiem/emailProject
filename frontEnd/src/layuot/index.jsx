@@ -4,19 +4,19 @@ import Content from '../content'
 import Footer from '../footer'
 import Login from '../login'
 import { useState } from 'react'
-import tokenContexst from '../context/tokenContexst'
+import dataContexst from '../context/dataContexst'
 import { Route, Router, Routes, json } from 'react-router-dom'
 import SignIn from '../signIn'
 
 export default function Layuot() {
-
-  const [token, setToken] = useState(localStorage.getItem("token")?localStorage.getItem("token"):"")
+  const localStorageItem = localStorage.getItem("data")
+  const [data, setData] = useState(localStorageItem? JSON.parse(localStorageItem) : null)
 
 
   
   return (<>
-  <tokenContexst.Provider value={ {token, setToken}}>
-    {token?
+  <dataContexst.Provider value={{data, setData}}>
+    {data?
     <div className='h-full text-1xl mx-3'>
     <Header />
      <Content />
@@ -30,7 +30,7 @@ export default function Layuot() {
      
      }
   
-      </tokenContexst.Provider>
+      </dataContexst.Provider>
     </>
   )
 }

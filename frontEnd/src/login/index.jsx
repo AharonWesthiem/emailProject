@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
-import tokenContext from "../context/tokenContexst";
+import dataContext from "../context/dataContexst";
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const nav = useNavigate()
 
   const [fData, setfData] = useState({})
-  const {token, setToken} = useContext(tokenContext)
+  const {data, setData} = useContext(dataContext)
 
  const  handleRequestAxios = () => {
     const user = {
@@ -16,8 +16,8 @@ export default function Login() {
     }
     axios.post('http://localhost:2500/user/login', user)
     .then(res =>{
-      localStorage.setItem("token", res.data[0])
-      setToken(res.data[0]);
+      localStorage.setItem("data", JSON.stringify(res.data))
+      setData(res.data);
     })
   }
 
