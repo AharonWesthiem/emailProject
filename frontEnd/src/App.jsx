@@ -6,15 +6,10 @@ import SignIn from "./signIn"
 function App() {
   return (
     <>
-    <div className="h-5/6">
-      {/* <SignIn/>
-      <Login />
-       <NewMessage/> */}
+    <div className="h-full max-w-full">
     <Layuot />
     </div>
-    {/* <h1 className="text-4xl font-bold underline">
-      Hello world!
-    </h1> */}
+   
     </>
   )
 }

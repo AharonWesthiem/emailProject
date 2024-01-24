@@ -12,8 +12,8 @@ async function read(filter) {
 async function readTresh(email ,status) {
   const query = emailModel.find();
     const myQuery = query.or([
-      { to: email, "tags.status":status},
-      { from: email, "tags.status":status },
+      { to: email, "tags.email":email ,"tags.status":status},
+      { from: email, "tags.email":email ,"tags.status":status},
     ]);
     const trash = await myQuery.exec();
       return trash;

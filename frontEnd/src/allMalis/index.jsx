@@ -50,12 +50,12 @@ export default function allMalis() {
 
 
     return (
+<div className='w-full'>
+        <table className='w-full border-slate-400 '>
 
-        <table className='max-w-full  border-slate-400 '>
-
-            <tbody  className='max-w-full'>
+            <tbody  className=' w-10/12 '>
                 {emails.map((message) =>
-                    <tr className='max-w-full flex justify-between  shadow-md border   p-2  '>
+                    <tr className='w-full flex justify-between  shadow-md border   p-2  '>
                         <Message key={message} mes={message} handelReadMessage={handelReadMessage}/>
                         <td className='self-center'><i onClick={()=>{updateStatusMessage(message._id, "trash")} }><ImBin /></i></td>
                     </tr>
@@ -64,6 +64,7 @@ export default function allMalis() {
 
             </tbody>
         </table>
+        </div>
 
     )
 }
