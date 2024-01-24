@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
 import Message from '../message'
-import { ImBin } from "react-icons/im";
+
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import dataContext from '../context/dataContexst'
@@ -51,19 +51,20 @@ export default function allMalis() {
 
     return (
 <div className='w-full'>
-        <table className='w-full border-slate-400 '>
+      
 
-            <tbody  className=' w-10/12 '>
+          
                 {emails.map((message) =>
-                    <tr className='w-full flex justify-between  shadow-md border   p-2  '>
-                        <Message key={message} mes={message} handelReadMessage={handelReadMessage}/>
-                        <td className='self-center'><i onClick={()=>{updateStatusMessage(message._id, "trash")} }><ImBin /></i></td>
-                    </tr>
-
+                <div className='w-full  hover:bg-rose-300'>
+                    < div className='max-w-full  
+                     shadow-md border  p-2  self-center '>
+                        <Message key={message} mes={message} handelReadMessage={handelReadMessage} updateStatusMessage={updateStatusMessage}/>
+                        {/* <p className='w-5 self-center'><i onClick={()=>{updateStatusMessage(message._id, "trash")} }><ImBin /></i></p> */}
+                   </div>
+                 </div>
                 )}
 
-            </tbody>
-        </table>
+       
         </div>
 
     )

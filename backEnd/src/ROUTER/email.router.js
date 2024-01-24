@@ -23,6 +23,7 @@ router.post("/", auth.authentication,async (req,res) =>{
 router.get('/:type',auth.authentication ,async(req,res)=>{
     const type = req.params.type
     const email = req.body.user
+    console.log(type, email);
     let data = await emailServies.getMessage(type,email)
     res.send(data)
 })

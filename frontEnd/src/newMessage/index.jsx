@@ -17,9 +17,9 @@ const handleChange = (e) => {
 }
 
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     try {
-      axios.post('http://localhost:2500/email', fData,{
+      await axios.post('http://localhost:2500/email', fData,{
         headers: {
           Authorization: `Bearer ${data.token}`
         }
@@ -32,7 +32,7 @@ const handleChange = (e) => {
 
   }
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full h-full">
       <div className=" w-6/12 p-6 bg-rose-300 rounded-lg">
         <form onSubmit={(e) => e.preventDefault()} >
           <div className="text-2xl font-bold mb-4 text-center">New Message</div>
