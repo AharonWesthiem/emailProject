@@ -21,7 +21,7 @@ export default function allMalis() {
         axios.get(`http://localhost:2500/email/${type}`)
             .then((res) => {
                 setEmails(res.data)
-                console.log(emails[0].from);
+                
             })
 
     }
