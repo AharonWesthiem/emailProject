@@ -12,8 +12,8 @@ async function read(filter) {
 async function readTresh(email ,status) {
   const query = emailModel.find();
     const myQuery = query.or([
-      { to: email, "tags.status":status},
-      { from: email, "tags.status":status },
+      { to: email, "tags.email":email ,"tags.status":status},
+      { from: email, "tags.email":email ,"tags.status":status},
     ]);
     const trash = await myQuery.exec();
       return trash;
@@ -33,13 +33,29 @@ async function readToUpdate(id, email, update) {
 
   if (update =="read") {
     console.log(update)
-    return await emailModel.updateOne(
-      { _id: id,
-      "tags.email": email ,
-      "tags.status": ["unread" ]},
-      { $set: { "tags.$.status.$": [update]}});
+    const foundEmail = await emailModel.findOne(
+      { 
+        _id: id,
+        "tags.email": email ,
+        // "tags.status": ["unread"]
+      },
+      // { 
+      //   $set: { "tags.$.status.$": [update]}
+      // }
+    );
+    const userTagIndex = foundEmail.tags.findIndex(tag => tag.email === email)
+    const newStatus = foundEmail.tags[userTagIndex].status.map(status => {
+      if(status === 'unread'){
+        return 'read'
+      }
+      return status;
+    })
+    foundEmail.tags[userTagIndex].status = newStatus;
+    return foundEmail.save()
   }
 }
+
+
 
 
 async function readOne(filter) {

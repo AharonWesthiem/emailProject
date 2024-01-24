@@ -14,6 +14,7 @@ async function getAllMessages() {
 
 
 async function addNewMassage(data) {
+
   let arr =  data.to
   if (data.to.includes(",")){
     arr = data.to.split(",")
@@ -22,6 +23,9 @@ async function addNewMassage(data) {
 
   let users = await userController.readList(arr)
   console.log(users)
+  if(users.length>0){
+    return
+  }
 
   let massageObj = {
     from: data.user,

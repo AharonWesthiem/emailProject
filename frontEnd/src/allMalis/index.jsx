@@ -33,24 +33,27 @@ export default function allMalis() {
 
     const nav = useNavigate()
 
-    const updateStatusMessage = async (id, status) => {
-        await axios.put(`http://localhost:2500/email/${id}/${status}`)
-            .then(res => res.data)
+    const updateStatusMessage = async (id,status) => {
+       await axios.put(`http://localhost:2500/email/${id}/${status}`)
+        .then(res => res.data)
+        axiosF()
+        console.log(res.data);
+
     }
 
     const handelReadMessage = (messageDetails) => {
-        nav('/message', { state: { messageDetails } })
-        axiosF()
+        nav('/message', { state: {messageDetails} })
+        
         console.log(messageDetails._id),
             updateStatusMessage(messageDetails._id, "read")
     }
 
 
     return (
+<div className='w-full'>
+        <table className='w-full border-slate-400 '>
 
-        <table className='w-full  border-slate-400 '>
-
-            <tbody>
+            <tbody  className=' w-10/12 '>
                 {emails.map((message) =>
                     <tr className='w-full flex justify-between  shadow-md border   p-2  '>
                         <Message key={message} mes={message} handelReadMessage={handelReadMessage} />
@@ -61,6 +64,7 @@ export default function allMalis() {
 
             </tbody>
         </table>
+        </div>
 
     )
 }
