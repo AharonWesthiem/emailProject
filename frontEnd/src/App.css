@@ -8,7 +8,7 @@
   max-width:  99vw;
   max-height: 95vh;
   width:  99vw;
-  height: 95vh;
+  height: 93vh;
 
 }
 
@@ -18,10 +18,10 @@ nav>ul>li{
   background-color: black;
   gap: 10px;
 }
-nav{
+/* nav{
   /* position: fixed; */
   /* z-index: 1; */
-}
+/* } */ 
   /* #root {
   max-width: 1280px;
   margin: 0 auto;

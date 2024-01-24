@@ -17,7 +17,7 @@ export default function Layuot() {
   return (<>
   <dataContexst.Provider value={{data, setData}}>
     {data?
-    <div className='h-full text-1xl mx-3'>
+    <div className='max-h-full h-full text-1xl mx-3'>
     <Header />
      <Content />
      <Footer/>
@@ -25,6 +25,7 @@ export default function Layuot() {
      <Routes>
       <Route  index element={<Login/>} />
       <Route path='/login' element={<Login/>} />
+      <Route path='/*' element={<Login/>} />
       <Route path='/signIn' element={<SignIn/>} />
      </Routes>
      
