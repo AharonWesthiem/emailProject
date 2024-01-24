@@ -13,35 +13,36 @@ export default function allMalis() {
     let { type } = useParams()
     const { data } = useContext(dataContext)
 
-    if (!type) {type = "from"}
+    if (!type) { type = "from" }
 
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
- const axiosF=()=>{ 
-     axios.get(`http://localhost:2500/email/${type}`)
+    const axiosF = () => {
+        axios.get(`http://localhost:2500/email/${type}`)
             .then((res) => {
                 setEmails(res.data)
+                console.log(emails[0].from);
             })
 
- }
+    }
 
 
     useEffect(() => {
         axiosF()
-    },[type])
+    }, [type])
 
     const nav = useNavigate()
 
-    const updateStatusMessage = async (id,status) => {
-       await axios.put(`http://localhost:2500/email/${id}/${status}`)
-        .then(res => res.data)
+    const updateStatusMessage = async (id, status) => {
+        await axios.put(`http://localhost:2500/email/${id}/${status}`)
+            .then(res => res.data)
     }
 
     const handelReadMessage = (messageDetails) => {
-        nav('/message', { state: {messageDetails} })
+        nav('/message', { state: { messageDetails } })
         axiosF()
         console.log(messageDetails._id),
-        updateStatusMessage(messageDetails._id, "read")
+            updateStatusMessage(messageDetails._id, "read")
     }
 
 
@@ -52,8 +53,8 @@ export default function allMalis() {
             <tbody>
                 {emails.map((message) =>
                     <tr className='w-full flex justify-between  shadow-md border   p-2  '>
-                        <Message key={message} mes={message} handelReadMessage={handelReadMessage}/>
-                        <td className='self-center'><i onClick={()=>{updateStatusMessage(message._id, "trash")} }><ImBin /></i></td>
+                        <Message key={message} mes={message} handelReadMessage={handelReadMessage} />
+                        <td className='self-center'><i onClick={() => { updateStatusMessage(message._id, "trash") }}><ImBin /></i></td>
                     </tr>
 
                 )}
