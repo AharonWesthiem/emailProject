@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function NewMessage() {
 const [fData, setfData] = useState()
-const{token} = useContext(dataContext)
+const{data} = useContext(dataContext)
 const nav = useNavigate()
 
 const handleChange = (e) => {
@@ -21,7 +21,7 @@ const handleChange = (e) => {
     try {
       axios.post('http://localhost:2500/email', fData,{
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${data.token}`
         }
       })
       setfData({})
