@@ -31,8 +31,6 @@ export default function allMalis() {
     const updateStatusMessage = async (id,status) => {
        await axios.put(`http://localhost:2500/${id}/${status}`)
         .then(res => res.data)
-        console.log(res.data);
-
     }
 
     const handelReadMessage = (messageDetails) => {
