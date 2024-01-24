@@ -13,23 +13,23 @@ export default function allMalis() {
     let { type } = useParams()
     const { data } = useContext(dataContext)
 
-    if (!type) {type = "from"}
+    if (!type) { type = "from" }
 
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
- const axiosF=()=>{ 
-     axios.get(`http://localhost:2500/email/${type}`)
+    const axiosF = () => {
+        axios.get(`http://localhost:2500/email/${type}`)
             .then((res) => {
                 setEmails(res.data)
-
+                console.log(emails[0].from);
             })
 
- }
+    }
 
 
     useEffect(() => {
         axiosF()
-    },[type])
+    }, [type])
 
     const nav = useNavigate()
 
@@ -45,10 +45,12 @@ export default function allMalis() {
         nav('/message', { state: {messageDetails} })
         
         console.log(messageDetails._id),
-        updateStatusMessage(messageDetails._id, "read")
+            updateStatusMessage(messageDetails._id, "read")
     }
 
+const handelCearch = ()=>{
 
+}
     return (
 <div className='w-full'>
       
