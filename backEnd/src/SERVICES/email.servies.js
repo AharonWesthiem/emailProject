@@ -23,7 +23,7 @@ async function addNewMassage(data) {
 
   let users = await userController.readList(arr)
   console.log(users)
-  if(users.length>0){
+  if(users.length===0){
     return
   }
 

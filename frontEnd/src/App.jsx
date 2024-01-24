@@ -6,7 +6,7 @@ import SignIn from "./signIn"
 function App() {
   return (
     <>
-    <div className="h-full max-w-full">
+    <div className="w-full h-full">
     <Layuot />
     </div>
    
