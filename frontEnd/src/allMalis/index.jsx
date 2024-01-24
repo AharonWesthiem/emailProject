@@ -48,7 +48,9 @@ export default function allMalis() {
             updateStatusMessage(messageDetails._id, "read")
     }
 
+const handelCearch = ()=>{
 
+}
     return (
 <div className='w-full'>
         <table className='w-full border-slate-400 '>

@@ -73,9 +73,12 @@ async function getMessage(type, email) {
     return emailController.read({ [type]: email });
 
   }
-  if (type === "trash"||type === "unread") {
+  if (type === "trash") {
     
     return emailController.readTresh(email,type);
+  }
+  if(type === "unread"){
+      return emailController.readUnread(email,type)
   }
 }
 

@@ -14,7 +14,7 @@ export default function Content() {
       
       <Nav />
 
-      <div className='w-10/12 flex justify-center ml-2 bg-rose-50	rounded-md'>
+      <div className='w-10/12 h-4/6 flex justify-center ml-2 mr-4 bg-rose-50	rounded-md '>
         <Routes>
           <Route index element={<AllMails />} />
           <Route path='/:type' element={<AllMails />} />
